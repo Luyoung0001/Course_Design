@@ -3,11 +3,6 @@
 #include "encode.h"
 #include "help.h"
 #include <string.h>
-// save to the file
-void saveLeafNodeCode(const char *filename, LeafNodeCode *leafNodeCodes,
-                      int numLeafNodes);
-// get LeafNodeCode from the file
-LeafNodeCode *loadLeafNodeCode(const char *filename, int *numLeafNodes);
 
 int main(int argc, char *argv[]) {
     // Security check
@@ -75,50 +70,7 @@ int main(int argc, char *argv[]) {
         }
     }
     return 0;
-
-
+    
 error:
     return -1;
-}
-
-void saveLeafNodeCode(const char *filename, LeafNodeCode *leafNodeCodes,
-                      int numLeafNodes) {
-    FILE *file = fopen(filename, "wb");
-    if (file == NULL) {
-        perror("File open error");
-        return;
-    }
-
-    fwrite(&numLeafNodes, sizeof(int), 1, file); // Write number of nodes first
-
-    for (int i = 0; i < numLeafNodes; ++i) {
-        fwrite(&leafNodeCodes[i], sizeof(LeafNodeCode), 1, file);
-    }
-
-    fclose(file);
-}
-
-LeafNodeCode *loadLeafNodeCode(const char *filename, int *numLeafNodes) {
-    FILE *file = fopen(filename, "rb");
-    if (file == NULL) {
-        perror("File open error");
-        return NULL;
-    }
-
-    fread(numLeafNodes, sizeof(int), 1, file); // Read number of nodes first
-
-    LeafNodeCode *leafNodeCodes =
-        (LeafNodeCode *)malloc(*numLeafNodes * sizeof(LeafNodeCode));
-    if (leafNodeCodes == NULL) {
-        perror("Memory allocation error");
-        fclose(file);
-        return NULL;
-    }
-
-    for (int i = 0; i < *numLeafNodes; ++i) {
-        fread(&leafNodeCodes[i], sizeof(LeafNodeCode), 1, file);
-    }
-
-    fclose(file);
-    return leafNodeCodes;
 }

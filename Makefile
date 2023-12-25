@@ -18,8 +18,8 @@ EncodeOnHaffmanTree/encode.o: EncodeOnHaffmanTree/encode.c EncodeOnHaffmanTree/e
 HuffmanTreeBuild/build.o: HuffmanTreeBuild/build.c HuffmanTreeBuild/build.h
 	$(CC) -c HuffmanTreeBuild/build.c -o HuffmanTreeBuild/build.o $(CFLAGS)
 
-Helps/help.o: Helps/help.h
-	$(CC) -c Helps/help.h -o Helps/help.o $(CFLAGS)
+Helps/help.o: Helps/help.c Helps/help.h
+	$(CC) -c Helps/help.c -o Helps/help.o $(CFLAGS)
 
 .PHONY: clean
 
