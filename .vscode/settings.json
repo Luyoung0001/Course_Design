@@ -4,6 +4,7 @@
         "list": "cpp",
         "vector": "cpp",
         "xstring": "cpp",
-        "build.h": "c"
+        "build.h": "c",
+        "encode.h": "c"
     }
 }

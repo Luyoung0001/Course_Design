@@ -1,6 +1,23 @@
 # 数据结构课程设计
 ## 哈夫曼编/译码器
 
+Course_Design/
+├── DecodeOnHaffmanCode/
+│   ├── decode.h
+│   └── decode.c
+├── EncodeOnHaffmanTree/
+│   ├── encode.h
+│   └── encode.c
+├── Helps/
+│   └── help.h
+├── HuffmanTreeBuild/
+│   ├── build.c
+│   └── build.h
+├── main.c
+└── Makefile`
+
+
+
 利用哈夫曼编码进行信息通信可以大大提高信道利用率，缩短信息传输时间，降低传输成本。但是，这要求在发送端通过一个编码系统对待传数据预先编码，在接收端将传来的数据进行译码（复原）。试为这样的信息收发站写一个哈夫曼的编/译码器。
 
 - 建立哈夫曼树：读入文件(*.souce)，统计文件中字符出现的频度，并以这些字符的频度作为权值，建立哈夫曼树。
