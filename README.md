@@ -115,7 +115,7 @@ haff -u 压缩文件名 -o 解压后文件名
 
 本文件用的 自动化编译工具 make,也就是带有脑子的脚本解释工具,它会直接读取  `Makefile` 文件,完成编译.
 
-本项目测试用的是 sh 脚本,解释器是 `sh` ,直接在在本 shell 中执行就好.子 shell 会需要权限,键入`chmod +x ./script` 就可以在子 shell 中运行了.
+本项目测试用的是 sh 脚本,解释器是 `sh` ,直接在在本 shell 中执行就好.子 shell 会需要权限,键入`chmod +x ./script.sh` 就可以在子 shell 中运行了.
 
 
 编译:
