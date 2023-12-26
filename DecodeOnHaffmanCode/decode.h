@@ -1,6 +1,6 @@
 #ifndef DECODE_H
 #define DECODE_H
-#include "../HuffmanTreeBuild/build.h"
+#include "build.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>

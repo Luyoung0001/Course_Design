@@ -1,8 +1,4 @@
 #include "encode.h"
-#include "../HuffmanTreeBuild/build.h"
-#define MASKCODE 0x000000ff
-#define ZERO 0x00
-
 // get the size of a file
 long getFileSize(const char *filename) {
     struct stat st;
