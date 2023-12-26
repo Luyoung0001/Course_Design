@@ -15,7 +15,7 @@ Course_Design/
 │   ├── build.c
 │   └── build.h
 ├── main.c
-└── Makefile`
+└── Makefile
 
 
 

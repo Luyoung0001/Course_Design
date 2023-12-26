@@ -6,6 +6,7 @@
         "xstring": "cpp",
         "build.h": "c",
         "encode.h": "c",
-        "help.h": "c"
+        "help.h": "c",
+        "decode.h": "c"
     }
 }

@@ -1,4 +1,5 @@
 #include "help.h"
+// haffman Code char* to Byte
 void saveLeafNodeCode(const char *filename, LeafNodeCode *leafNodeCodes,
                       int numLeafNodes) {
     FILE *file = fopen(filename, "wb");

@@ -55,10 +55,10 @@ void getPriorityQueue() {
         }
     }
     // test
-    printf("Byte value---the freq of it\n");
-    for (int i = 0; i < 256; i++) {
-        printf("%d: %d\n", i, Array[i]);
-    }
+    // printf("Byte value---the freq of it\n");
+    // for (int i = 0; i < 256; i++) {
+    //     printf("%d: %d\n", i, Array[i]);
+    // }
 }
 // sort the order queue
 void sortPriorityQueue() {
@@ -72,9 +72,9 @@ void sortPriorityQueue() {
         }
     }
     // test
-    for (int i = 0; i < count; i++) {
-        printf("%d: %d\n", priorityQueue[i]->data, priorityQueue[i]->freq);
-    }
+    // for (int i = 0; i < count; i++) {
+    //     printf("%d: %d\n", priorityQueue[i]->data, priorityQueue[i]->freq);
+    // }
 }
 
 // create empty priorityQueue
@@ -156,7 +156,7 @@ void printHuffmanTree(Node *root) {
     if (root == NULL) {
         return;
     }
-    printf("%d - %d\n", root->data, root->freq);
+    // printf("%d - %d\n", root->data, root->freq);
     printHuffmanTree(root->left);
     printHuffmanTree(root->right);
 }
@@ -187,7 +187,7 @@ void generateLeafNodeCodes(Node *node, char *currentCode,
     }
 }
 
-// craete LeafNodeCode[]
+// create LeafNodeCode[]
 LeafNodeCode *getLeafNodeCodes(Node *root) {
     numLeafNodes = count;
 

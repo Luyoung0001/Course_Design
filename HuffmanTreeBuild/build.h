@@ -23,7 +23,7 @@ typedef struct PriorityQueue {
 // Haffman code
 typedef struct {
     char data;      // Byte
-    char code[256]; // a code for each Byte
+    char code[16]; // a code for each Byte
 } LeafNodeCode;
 
 extern int count;            // number of type of bytes
