@@ -1,6 +1,7 @@
 # 数据结构课程设计
 ## 哈夫曼编/译码器
-
+文件目录结构如下:
+```
 Course_Design/
 ├── DecodeOnHaffmanCode/
 │   ├── decode.h
@@ -14,9 +15,18 @@ Course_Design/
 ├── HuffmanTreeBuild/
 │   ├── build.c
 │   └── build.h
+├── Test/
+│   ├── 1.pdf
+│   ├── 2.pptx
+│   ├── 3.png
+│   ├── 4.mp3
+│   ├── 5.mp4
+│   └── 6.txt
 ├── main.c
+├── script.sh
+├── README.md
 └── Makefile
-
+```
 
 
 利用哈夫曼编码进行信息通信可以大大提高信道利用率，缩短信息传输时间，降低传输成本。但是，这要求在发送端通过一个编码系统对待传数据预先编码，在接收端将传来的数据进行译码（复原）。试为这样的信息收发站写一个哈夫曼的编/译码器。
@@ -77,24 +87,80 @@ haff -u 压缩文件名 -o 解压后文件名
 
 由于编码后的`*.code` 文件本质上是一个文本文件,其肯定比原文件大很多,那么我们肯定不能将这个文本文件保存起来用于传输.
 
-因此必须将这个文本文件转化成一个二进制文件,就是将文本文件中的 8 个 01 字符当成一个字节写入二进制文件,写入的时候得保证内存对齐,因此你不能保证 0101 文本文件的字符个数恰好是 8 的倍数,因此要在最后一个字符末尾补 0.
+因此必须将这个文本文件转化成一个二进制文件,就是将文本文件中的 8 个 01 字符当成一个字节写入二进制文件,写入的时候得保证内存对齐,因为不能保证 0101 文本文件的字符个数恰好是 8 的倍数,因此要在最后一个字符末尾补 若干0.
 
-比如:01011,我们必须补成 01011000 00000011.为什么要在最后多一个00000011? 这是因为得告诉解码器补了几个 0,如果恰好不需要补,那么也要补 00000000.这样就完美解决了内存对齐问题.
+比如:01011,我们必须补成 01011000,这样就完美解决了内存对齐问题.
 
 解码的时候,可以设定前 200 个字节为哈夫曼编码信息,从第 200 开始,就是文件编码信息,开始从这里进行解码.这样避免了使用魔数机制开始找开始的地方.
 
 ### 最后的思路
 
 以下为写压缩文件的步骤:
-- 写入两个字节的魔数 00000000 00000000
+- 写入 魔数 `0xdeadbeef`
+- 写入 haffman code 大小
 - 写入 Haffman Code
+- 写入 文件大小
 - 写入 文件编码
 - 得到压缩文件
 
 解压文件步骤:
 - 检查魔数
+- 得到 Haffman code 大小
 - 反序列化 Haffman Code
+- 拿到 文件大小信息
 - 取出 文件编码
 - 根据 Haffman Code 和 文件编码 得到目标文件
+
+### 说明
+
+本文件用的 自动化编译工具 make,也就是带有脑子的脚本解释工具,它会直接读取  `Makefile` 文件,完成编译.
+
+本项目测试用的是 sh 脚本,解释器是 `sh` ,直接在在本 shell 中执行就好.子 shell 会需要权限,键入`chmod +x ./script` 就可以在子 shell 中运行了.
+
+
+编译:
+```bash
+make
+```
+
+在本 shell 中运行:
+```bash
+. ./script.sh
+```
+
+然后就得到了测试信息:
+
+```bash
+ile: ./Test/1.pdf is zipping now!
+file: ./Test/1.pdf zipped successed!                                   ] 0.00%
+the rate of the zip is 0.99944
+file: ./Test/2.pptx is zipping now!
+file: ./Test/2.pptx zipped successed!                                  ] 0.00%
+the rate of the zip is 1.01594
+file: ./Test/3.png is zipping now!
+file: ./Test/3.png zipped successed!                                   ] 0.00%
+the rate of the zip is 1.00278
+file: ./Test/4.mp3 is zipping now!
+file: ./Test/4.mp3 zipped successed!                                   ] 0.00%
+the rate of the zip is 0.99846
+file: ./Test/5.mp4 is zipping now!
+file: ./Test/5.mp4 zipped successed!===============================    ] 92.21%
+the rate of the zip is 0.99829
+file: ./Test/6.txt is zipping now!
+file: ./Test/6.txt zipped successed!                                   ] 0.00%
+the rate of the zip is 0.60989
+file: ./Test/zipfile1.code is unzipping!
+file: ./Test/zipfile1.code unzip successed!=======================     ] 90.12%
+file: ./Test/zipfile2.code is unzipping!
+file: ./Test/zipfile2.code unzip successed!======================      ] 88.70%
+file: ./Test/zipfile3.code is unzipping!
+file: ./Test/zipfile3.code unzip successed!==========================  ] 97.30%
+file: ./Test/zipfile4.code is unzipping!
+file: ./Test/zipfile4.code unzip successed!=======================     ] 90.54%
+file: ./Test/zipfile5.code is unzipping!
+...
+```
+
+某些文件压缩率很大,这很正常,因为它本身就是压缩文件(pdf, pptx, mp3, png),但对于文本文件有着很好的压缩效果.
 
 
