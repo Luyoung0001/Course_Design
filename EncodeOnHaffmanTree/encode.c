@@ -47,7 +47,7 @@ int targetFile(LeafNodeCode *leafNodeCodes, char *fileSourceName,
 
     // file code
     long Nwrite = 0;        // how many Bytes already been written in the file
-    uint32_t buffer = 0;    // buffer for 4 Bytes
+    uint8_t buffer = 0;    // buffer for 1 Byte
     int lengthOfBUffer = 0; // length of buffer
     int byte;               // Byte from the source file
     int lenOfHaffmanCode = 0;
@@ -57,9 +57,9 @@ int targetFile(LeafNodeCode *leafNodeCodes, char *fileSourceName,
 
         for (int i = 0; i < lenOfHaffmanCode; i++) {
             if (haffman_code[i] == '1') {
-                buffer ^= (uint32_t)1;
+                buffer |= 1;
             } else {
-                buffer ^= (uint32_t)0;
+                buffer &= ~1;
             }
             lengthOfBUffer++;
 
@@ -70,7 +70,6 @@ int targetFile(LeafNodeCode *leafNodeCodes, char *fileSourceName,
                 unsigned char key = buffer & MASKCODE;
                 fprintf(fileTarget, "%c", key);
                 lengthOfBUffer -= 8;
-
                 // show the process
                 double percent = (Nwrite++) / (sizeOfFile * 1.0);
                 printProcess(percent);

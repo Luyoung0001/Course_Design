@@ -4,7 +4,7 @@
 #include <sys/stat.h>
 #include "decode.h"
 
-#define MASKCODE 0x000000ff
+#define MASKCODE 0xff
 #define ZERO 0x00
 long getFileSize(const char *filename);
 

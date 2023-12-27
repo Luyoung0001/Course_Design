@@ -17,4 +17,7 @@ make &&
 ./main -u ./Test/zipfile6.code -o ./Test/66decode.txt &&
 cd ./Test &&
 ls -al &&
+rm *decode* &&
+rm zip* &&
+cd .. &&
 make clean
